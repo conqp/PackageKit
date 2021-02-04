@@ -53,7 +53,7 @@ pk_alpm_transaction_sync_targets (PkBackendJob *job, const gchar **packages, gbo
 		}
 
 		if (i == NULL) {
-			alpm_errno_t errno = ALPM_ERR_DB_NOT_FOUND;
+			extern alpm_errno_t errno = ALPM_ERR_DB_NOT_FOUND;
 			g_set_error (error, PK_ALPM_ERROR, errno, "%s/%s: %s",
 				     repo, name, alpm_strerror (errno));
 			return FALSE;
@@ -76,7 +76,7 @@ pk_alpm_transaction_sync_targets (PkBackendJob *job, const gchar **packages, gbo
 		}
 
 		if (pkg == NULL || alpm_add_pkg (priv->alpm, pkg) < 0) {
-			alpm_errno_t errno = alpm_errno (priv->alpm);
+			extern alpm_errno_t errno = alpm_errno (priv->alpm);
 			g_set_error (error, PK_ALPM_ERROR, errno, "%s/%s: %s",
 				     repo, name, alpm_strerror (errno));
 			return FALSE;
